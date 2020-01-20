@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 volumes:
   wp-data:
@@ -6,16 +6,15 @@ networks:
   wp-back:
 
 services:
-
   db:
     image: mysql:5.7
     volumes:
       - wp-data:/var/lib/mysql
     environment:
-       MYSQL_ROOT_PASSWORD: root-pass
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wp-user
-       MYSQL_PASSWORD: wp-pass
+      MYSQL_ROOT_PASSWORD: rootPassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp-user
+      MYSQL_PASSWORD: wp-pass
     ports:
       - 8889:3306
     networks:
@@ -29,7 +28,7 @@ services:
       PMA_HOST: db
       MYSQL_USER: wp-user
       MYSQL_PASSWORD: wp-pass
-      MYSQL_ROOT_PASSWORD: root-pass
+      MYSQL_ROOT_PASSWORD: rootPassword
     ports:
       - 3001:80
     networks:
@@ -43,12 +42,11 @@ services:
       - 8888:80
       - 443:443
     environment:
-       WORDPRESS_DB_HOST: db
-       WORDPRESS_DB_USER: wp-user
-       WORDPRESS_DB_PASSWORD: wp-pass
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp-user
+      WORDPRESS_DB_PASSWORD: wp-pass
     volumes:
       - ./wordpress-files:/var/www/html
     container_name: wordpress-site
     networks:
       - wp-back
-
